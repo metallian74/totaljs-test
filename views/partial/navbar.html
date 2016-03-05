@@ -1,0 +1,36 @@
+<nav class="navbar navbar-default">
+    <div class="container">
+        <div class="navbar-header">
+            <a class="navbar-brand" href="/">TestApp</a>
+        </div>
+        <div id="navbar" class="navbar-collapse collapse">
+
+            @{if session && session.user}
+
+            <p>Hi, @{session.user.name}. View your <a href="/profile">profile</a>.
+            </p>
+            @{else}
+
+            <ul class="nav navbar-nav navbar-right">
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"><b>Login</b> <span class="caret"></span></a>
+                    <ul id="login-dp" class="dropdown-menu">
+                        <li>
+
+                            @{view('~/partial/login')}
+                        </li>
+                    </ul>
+                </li>
+                <li>
+                    <p class="navbar-text">or</p>
+                </li>
+                <li>
+                    <a href="/register">Register</a>
+                </li>
+            </ul>
+            @{fi}
+        </div>
+        <!--/.nav-collapse -->
+    </div>
+    <!--/.container-fluid -->
+</nav>
