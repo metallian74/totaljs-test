@@ -6,6 +6,7 @@
   "dependencies": {
     "mysql": "^2.10.2",
     "siege": "^0.2.0",
+    "slick-carousel": "^1.5.9",
     "total.js": "^1.9.6"
   },
   "devDependencies": {},

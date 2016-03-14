@@ -25,6 +25,9 @@ function view_register() {
 
 function post_register() {
     
+    var model = this.body;
+    
+    this.view('');
     
 }
 // Framework usage
