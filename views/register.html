@@ -1,0 +1,39 @@
+<form class="form" style="max-width:600px;margin:auto;" action="/register" data-toggle="validator" id="formReg" role="form">
+    <h2>@{resource('reg.title')}</h2>
+    <p>
+        @{resource('reg.info')}
+    </p>
+    <div class="form-group input-group">
+        <label class="input-group-addon" for="username">
+            @{resource('reg.username')}
+        </label>
+        <input type="text" id="username" data-minlength="6" data-remote="/user/check" name="username" class="form-control" aria-describedby="basic-addon1" required>
+
+        <div class="help-block with-errors"></div>
+    </div>
+
+
+    <div class="form-group input-group">
+
+        <label class="input-group-addon" for="inputEmail">
+            @{resource('reg.email')}
+        </label>
+        <input type="email" class="form-control" id="inputEmail" name="email" data-error="@{resource('reg.emailrequired')}" required>
+
+    </div>
+
+    <div class="form-group col-sm-6">
+        <input type="password" data-minlength="6" class="form-control" id="inputPassword" name="pass" placeholder="Password" required>
+        <span class="help-block"></span>
+    </div>
+
+    <div class="form-group col-sm-6">
+        <input type="password" class="form-control" id="inputPasswordConfirm" data-match="#inputPassword" name="passconfirm" data-match-error placeholder="Confirm" required>
+
+        <div class="help-block with-errors"></div>
+    </div>
+    <button type="submit" class="btn btn-default">
+        @{resource('reg.submit')}
+    </button>
+
+</form>

@@ -5,10 +5,14 @@
         </div>
         <div id="navbar" class="navbar-collapse collapse">
 
-            @{if session && session.user}
-
-            <p>Hi, @{session.user.name}. View your <a href="/profile">profile</a>.
-            </p>
+            @{if user}
+            <ul class="nav navbar-nav navbar-right">
+                <li>
+                    <p>Hi, @{user.email}. View your <a href="/profile">profile</a> / 
+                    <a href="/logout">logout</a>
+                    </p>
+                </li>
+            </ul>
             @{else}
 
             <ul class="nav navbar-nav navbar-right">
@@ -16,7 +20,6 @@
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown"><b>Login</b> <span class="caret"></span></a>
                     <ul id="login-dp" class="dropdown-menu">
                         <li>
-
                             @{view('~/partial/login')}
                         </li>
                     </ul>

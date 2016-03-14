@@ -1,0 +1,4 @@
+name							: total.js - debug
+
+// session cookie name
+cookie							: __user_debug

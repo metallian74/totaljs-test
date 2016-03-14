@@ -1,0 +1,25 @@
+{
+  "name": "totaljs",
+  "version": "1.0.0",
+  "description": "A totaljs test app",
+  "main": "debug.js",
+  "dependencies": {
+    "mysql": "^2.10.2",
+    "siege": "^0.2.0",
+    "total.js": "^1.9.6"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "benchmark.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/metallian74/totaljs-test.git"
+  },
+  "author": "sebos",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/metallian74/totaljs-test/issues"
+  },
+  "homepage": "https://github.com/metallian74/totaljs-test#readme"
+}

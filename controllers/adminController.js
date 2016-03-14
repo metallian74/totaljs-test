@@ -1,5 +1,5 @@
 exports.install = function () {
-    F.route('/admin/', view_index);
+    F.route('/admin/', view_index, ['authorize', '@admin']);
     // or
     // F.route('/');
 	F.route('/admin/users', view_admin, ['authorize', '@admin']);

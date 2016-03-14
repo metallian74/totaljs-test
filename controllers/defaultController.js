@@ -9,14 +9,13 @@ exports.install = function () {
 
 function view_index() {
     var self = this;
-    self.view('index');
+    self.view('index', self.req.user);
 }
 
 function view_services(name){
     var self = this;
     
-    self.view('services', {category : name});
-    
+    self.view('services', {category : name});    
 }
 
 function view_contact() {

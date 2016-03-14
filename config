@@ -1,7 +1,7 @@
 name                            : total.js
 author                          : Sebos
 version                         : 1.00
-secret                          : bigdick
+secret                          : la-vie-est-un-long-fleuve-tranquilllle
 
 // Mail settings
 mail.smtp                       : smtp.yourwebsite.com
@@ -9,3 +9,10 @@ mail.smtp.options               : {"secure":false,"port":25,"user":"","password"
 mail.address.from               : your@yourwebsite.com
 mail.address.reply              : your@yourwebsite.com
 mail.address.bcc                :
+
+
+// session cookie name
+cookie							: __user
+
+//Database
+database                        : { "host":"localhost", "port" : "3306", "user":"root", "pwd":"root", "db": "test_db" }
