@@ -1,6 +1,8 @@
-var DAL = require('../DAL/dal.js');
 var dbconf = JSON.parse(F.config.database);
 var mysql = require('mysql');
+var DAL = require('../DAL/dal.js');
+
+// console.log(DAL.user);
 
 DAL.pool = mysql.createPool({
     host            : dbconf.host,
@@ -11,7 +13,7 @@ DAL.pool = mysql.createPool({
 });
 
 DAL.pool.on('connection', function (connection) {
-  console.log('connected as id ' + connection.threadId);
+  console.log('[POOL] : connected as id ' + connection.threadId);
 
 });
 

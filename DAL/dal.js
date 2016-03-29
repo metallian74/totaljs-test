@@ -1,65 +1,52 @@
-//DAL Module
+"use strict";
+var DAL = {
+	    _exec: function (query, values, callback) {
+	        console.log("[DAL] exec : " + query);
 
-module.exports = {
+	        F.database(function (error, cnx) {
 
+	            if (error) {
+	                cnx.release();
+	                console.log('[DAL] : ' + error);
+	                callback(error);
+	                return;
+	            }
+	            //https://www.npmjs.com/package/mysql#escaping-query-values
+	            //e.g. | ? :auto escaping
 
-    log: function log(level, message) {
+	            //  var userId = 1;
+	            //  var columns = ['username', 'email'];
+	            //  var query = connection.query('SELECT ?? FROM ?? WHERE id = ?', [columns, 'users', userId], function(err, results) {
+	            //      ... 
+	            //  });
 
-        //DAL.db.insert(level, message, new Date());
-    },
+	            var sp = "CALL " + query + "(?);";
+	            
+	            console.log("[DAL] Query: " + sp + ' | ' + values);
 
-    login: function login(email, password, callback) {
-        this._exec("usr_login", [email, password], callback);
+	            cnx.query(sp, [values], function (err, rows) {
 
-    },
+	                // Close connection
+	                cnx.release();
 
-    validateEmail: function validateEmail(email, callback) {
-        this._exec("email_valid", [email], callback);
-    },
+	                if (err) {
+	                    console.log('[DAL] : ' + err);
+	                    callback({
+	                        error: err
+	                    });
+	                }
 
-    _exec: function (query, values, callback) {
-        console.log("exec : " + query);
+	                // Shows the result on a console window
+	                //                console.log(rows[0][0]);
 
-        F.DAL.pool.getConnection(function (error, cnx) {
+	                // Send rows as the model into the view
+	                callback(rows);
+	            });
 
-            if (error) {
-                cnx.release();
-                console.log(error);
-                callback(error);
-                return;
-            }
-            //https://www.npmjs.com/package/mysql#escaping-query-values
-            //e.g. | ? :auto escaping
+	        });
+	    }
+	}
 
-            //  var userId = 1;
-            //  var columns = ['username', 'email'];
-            //  var query = connection.query('SELECT ?? FROM ?? WHERE id = ?', [columns, 'users', userId], function(err, results) {
-            //      ... 
-            //  });
+DAL.user = require('./user.js')(DAL);
 
-            var sp = "call " + query + "(?);";
-
-            console.log("Query: " + sp + ' | ' + values);
-
-            cnx.query(sp, [values], function (err, rows) {
-
-                // Close connection
-                cnx.release();
-
-                if (err) {
-                    console.log(err);
-                    callback({
-                        error: err
-                    });
-                }
-
-                // Shows the result on a console window
-                //                console.log(rows[0][0]);
-
-                // Send rows as the model into the view
-                callback(rows[0][0]);
-            });
-
-        });
-    }
-}
+module.exports = DAL;

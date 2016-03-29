@@ -2,6 +2,7 @@ exports.install = function () {
 
     //    F.route('/', view_profile, ['authorize'])
     F.route('/', json_login, ['xhr', 'post']);
+    F.route('/xhr/login/', json_login);
     F.route('/register', view_register);
     F.route('/register', post_register, ['post']);
 
@@ -26,22 +27,18 @@ function view_register() {
 function post_register() {
     
     var model = this.body;
-    
+    // var error = this.validate(model,    );
+
     this.view('');
     
 }
-// Framework usage
-// GET
-//function view_usage() {
-//    var self = this;
-//    self.plain(framework.usage(true));
-//}
 
 // Login process
 // POST, [xhr, unlogged]
 function json_login() {
     var self = this;
     var error = self.validate(self.post, ['email', 'password']);
+    // var auth = MODULE('auth');
 
     if (self.user !== null) {
         error.add('Logged');
@@ -49,9 +46,7 @@ function json_login() {
         return;
     }
 
-    F.DAL.login(self.body.email, self.body.password, function (res) {
-
-        console.log('Login : ' + res);
+    F.DAL.user.login(self.body.email, self.body.password, function (res) {
 
         if (!res) {
             error.add('LoginError');
@@ -64,8 +59,9 @@ function json_login() {
             return;
         }
         var user = res;
-        //        console.log(user);
-        // Save to cookie
+
+        F.cache.set('user_' + user.id, user, '5 minutes');
+
         self.res.cookie(F.config.cookie, F.encrypt({
             id: user.id,
             email: user.email,
@@ -84,7 +80,17 @@ function json_login() {
 // Logoff process
 // POST, [+xhr, logged]
 function json_logoff() {
-    var self = this;
-    self.res.cookie(F.config.cookie, '', new Date().add('-1 year'));
-    self.redirect('/');
+    var user = this.user;
+
+    // remove cookie
+    // remove user session
+    this.res.cookie(F.config.cookie, '', new Date().add('-1 year'));
+    // 
+    this.redirect('/');
 }
+
+
+
+
+
+

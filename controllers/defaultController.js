@@ -9,7 +9,8 @@ exports.install = function () {
 
 function view_index() {
     var self = this;
-    self.view('index', self.req.user);
+    console.log(self.user);
+    self.view('index', self.user);
 }
 
 function view_services(name){

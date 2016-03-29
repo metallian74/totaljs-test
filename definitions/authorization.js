@@ -1,3 +1,5 @@
+
+//Authorization
 F.onAuthorize = function (req, res, flags, callback) {
 
     var cookie = req.cookie(F.config.cookie);
@@ -9,24 +11,50 @@ F.onAuthorize = function (req, res, flags, callback) {
 
     var obj = F.decrypt(cookie, 'user');
 
-    if (obj === null || obj === '' || obj.ip !== req.ip) {
-        console.log('F.onAuthorize / user null');
+    if (!obj || obj.ip !== req.ip) {
+        console.log('F.onAuthorize / no user in cookie');
         callback(false);
         return;
     }
 
     var user = F.cache.read('user_' + obj.id);
-    if (!user)
-        F.cache.set('user_' + obj.id, obj, '5 minutes');
+    if (user){
+        console.log('F.onAuthorize / got user from cache.');
+        callback(true, user)
+    }
+    else {
 
-    if (user)
-        console.log('got user from cache.');
+        //Get user from DB
+        F.DAL.user.get(obj.id, function(res){
 
-    req.user = user = obj;
-    callback(true);
+            if(!res){
+                callback(false);
+                return;
+            }
+            user = res;
+            console.log("F.onAuthorize / got user from DB");
 
+            F.cache.set('user_' + user.id, user, '5 minutes');
+            callback(true, user);
+        });
+    }
 };
+/*
+F.on('module#auth', function(type, name) {
+    var auth = MODULE('auth');
+    auth.onAuthorize = function(id, callback, flags) {
 
+        // - this function is cached
+        // - here you must read user information from a database
+        // - insert the user object into the callback (this object will be saved to session/cache)
+        callback({ id: '1', alias: 'Peter Sirka' });
+
+        // if user not exist then
+        // callback(null);
+    };
+});*/
+
+//Validation
 
 F.onValidate = function (name, value) {
     switch (name) {

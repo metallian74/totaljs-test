@@ -1,7 +1,7 @@
 name                            : total.js
-author                          : Sebos
-version                         : 1.00
-secret                          : la-vie-est-un-long-fleuve-tranquilllle
+author                          : SH Partner SAS
+version                         : 0.1
+secret                          : may-the-4-be-with-you
 
 // Mail settings
 mail.smtp                       : smtp.yourwebsite.com

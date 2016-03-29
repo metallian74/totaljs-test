@@ -1,6 +1,11 @@
 //Error info
-error-firstname        : First name is not valid.
-error-lastname         : Last name is not valid.
+error-username         : First name is not valid
+error-username-s	   : First name is too short
+error-username-l	   : First name is too long
+error-username-t	   : First name is already used
+error-passmin		   : Password is too short
+error-email			   : Email is not valid
+error-email-t		   : Email is already taken
 
 //Login info
 LoginEmail			   : please fill login email

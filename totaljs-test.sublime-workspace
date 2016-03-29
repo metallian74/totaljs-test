@@ -7,17 +7,6 @@
 	},
 	"buffers":
 	[
-		{
-			"contents": "var schema = SCHEMA('default');\nvar User = schema.add('user');\n\nUser.define('username', 'string(50)', true);\n\nUser.setValidate(function () {\n	\n})",
-			"file": "models/userModel.js",
-			"file_size": 144,
-			"file_write_time": 131024432080000000,
-			"settings":
-			{
-				"buffer_size": 145,
-				"line_ending": "Unix"
-			}
-		}
 	],
 	"build_system": "",
 	"build_system_choices":
@@ -26,10 +15,22 @@
 	"build_varint": "",
 	"command_palette":
 	{
-		"height": 127.0,
-		"last_filter": "code",
+		"height": 291.0,
+		"last_filter": "",
 		"selected_items":
 		[
+			[
+				"ja",
+				"Set Syntax: JavaScript"
+			],
+			[
+				"total",
+				"Set Syntax: Total.js - View Engine"
+			],
+			[
+				"package",
+				"Package Control: Install Package"
+			],
 			[
 				"code",
 				"Project: Refresh Folders"
@@ -43,13 +44,14 @@
 				"Set Syntax: Total.js Configuration File"
 			]
 		],
-		"width": 392.0
+		"width": 579.0
 	},
 	"console":
 	{
-		"height": 0.0,
+		"height": 120.0,
 		"history":
 		[
+			"import urllib.request,os,hashlib; h = '2915d1851351e5ee549c20394736b442' + '8bc59f460fa1548d1514676163dafc88'; pf = 'Package Control.sublime-package'; ipp = sublime.installed_packages_path(); urllib.request.install_opener( urllib.request.build_opener( urllib.request.ProxyHandler()) ); by = urllib.request.urlopen( 'http://packagecontrol.io/' + pf.replace(' ', '%20')).read(); dh = hashlib.sha256(by).hexdigest(); print('Error validating download (got %s instead of %s), please try manual install' % (dh, h)) if dh != h else open(os.path.join( ipp, pf), 'wb' ).write(by)"
 		]
 	},
 	"distraction_free":
@@ -64,6 +66,7 @@
 	"expanded_folders":
 	[
 		"/Users/Shide/Documents/Devs/Web/node/totaljs",
+		"/Users/Shide/Documents/Devs/Web/node/totaljs/controllers",
 		"/Users/Shide/Documents/Devs/Web/node/totaljs/DAL",
 		"/Users/Shide/Documents/Devs/Web/node/totaljs/definitions",
 		"/Users/Shide/Documents/Devs/Web/node/totaljs/models",
@@ -73,19 +76,34 @@
 	],
 	"file_history":
 	[
+		"/Users/Shide/Documents/Devs/Web/node/totaljs/models/userModel.js",
+		"/Users/Shide/Documents/Devs/Web/node/totaljs/controllers/userController.js",
+		"/Users/Shide/Documents/Devs/Web/node/totaljs/DAL/dal.js",
+		"/Users/Shide/Documents/Devs/Web/node/totaljs/definitions/database.js",
+		"/Users/Shide/Documents/Devs/Web/node/totaljs/views/index.html",
+		"/Users/Shide/Documents/Devs/Web/node/totaljs/views/layout.html",
+		"/Users/Shide/Documents/Devs/Web/node/totaljs/definitions/authorization.js",
+		"/Users/Shide/Library/Application Support/Sublime Text 3/Packages/User/Preferences.sublime-settings",
+		"/Users/Shide/Library/Application Support/Sublime Text 3/Packages/Default/Preferences.sublime-settings",
 		"/Users/Shide/Documents/Devs/Web/node/totaljs/views/admin/index.html",
+		"/Users/Shide/Library/Application Support/Sublime Text 3/Packages/DocBlockr/README.md",
+		"/Users/Shide/Library/Application Support/Sublime Text 3/Packages/Alignment/Default (OSX).sublime-keymap",
+		"/Users/Shide/Library/Application Support/Sublime Text 3/Packages/Default/Default (OSX).sublime-keymap",
+		"/Users/Shide/Library/Application Support/Sublime Text 3/Packages/Alignment/Base File.sublime-settings",
+		"/Users/Shide/Library/Application Support/Sublime Text 3/Packages/User/Default (OSX).sublime-keymap",
 		"/Users/Shide/Documents/Devs/Web/node/totaljs/node_modules/total.js/builders.js",
 		"/Users/Shide/Documents/Devs/Web/node/totaljs/node_modules/total.js/utils.js"
 	],
 	"find":
 	{
-		"height": 0.0
+		"height": 37.0
 	},
 	"find_in_files":
 	{
-		"height": 0.0,
+		"height": 93.0,
 		"where_history":
 		[
+			""
 		]
 	},
 	"find_state":
@@ -93,6 +111,17 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"callback",
+			"todo",
+			"theme",
+			"content",
+			"carroussel",
+			"data",
+			"ul",
+			"li",
+			"item",
+			"li",
+			"\"><"
 		],
 		"highlight": true,
 		"in_selection": false,
@@ -110,43 +139,14 @@
 	"groups":
 	[
 		{
-			"selected": 0,
 			"sheets":
 			[
-				{
-					"buffer": 0,
-					"file": "models/userModel.js",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 145,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								145,
-								145
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/JavaScript/JavaScript.sublime-syntax"
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 0,
-					"type": "text"
-				}
 			]
 		}
 	],
 	"incremental_find":
 	{
-		"height": 0.0
+		"height": 22.0
 	},
 	"input":
 	{
@@ -187,7 +187,7 @@
 	"project": "totaljs-test.sublime-project",
 	"replace":
 	{
-		"height": 0.0
+		"height": 40.0
 	},
 	"save_all_on_build": true,
 	"select_file":
@@ -205,12 +205,12 @@
 	},
 	"select_project":
 	{
-		"height": 0.0,
+		"height": 500.0,
 		"last_filter": "",
 		"selected_items":
 		[
 		],
-		"width": 0.0
+		"width": 380.0
 	},
 	"select_symbol":
 	{
